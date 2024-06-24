@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Всплывающее окно</title>
+    <style>
+        button {
+            background-color: #0074D9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        input {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="myInput" placeholder="Введите текст">
+    <button onclick="showPopup()">Показать всплывающее окно</button>
+
+    <script>
+        function showPopup() {
+            const inputValue = document.getElementById('myInput').value;
+            alert(Содержимое поля ввода: ${inputValue});
+        }
+    </script>
+</body>
+</html>
