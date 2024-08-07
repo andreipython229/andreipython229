@@ -1,15 +1,14 @@
-from django.http import HttpResponse
-from django.shortcuts import render,redirect
-from django.views.decorators.csrf import csrf_exempt
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
 
-# Create your views here.
-def index(request):
-    return render(request, 'index.html')
-
-
-def andrzej(request):
-    return request('/')
-
-@csrf_exempt
-def andrej2(request):
-        return render(request, 'andrzej.html',{'name': 'andrzej','age':51, 'state':very_good})
+<h1>{{ name }}</h1>
+<h1>{{ age }}</h1>
+<h1>{{ state }}</h1>
+<h2 style="...">ANDRZEJ</h2>
+</body>
+</html>
