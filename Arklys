@@ -1,0 +1,58 @@
+#A way to prohibit changing our attributes, implement the logic for changing/getting attributes,
+#and how to prohibit adding new attributes to an object.
+
+
+class MyClass:
+slots = ['_attr1', '_attr2']  # Ограничиваем атрибуты только этими именами
+
+def init(self, attr1, attr2):
+  self._attr1 = attr1
+  self._attr2 = attr2
+
+    @property
+    def attr1(self):
+        return self._attr1
+
+@attr1.setter
+def attr1(self, value):
+  if isinstance(value, int):  # Пример проверки типа
+     self._attr1 = value
+  else:
+     raise ValueError("attr1 должен быть целым числом")
+
+@property
+def attr2(self):
+  return self._attr2
+
+@attr2.setter
+def attr2(self, value):
+  if isinstance(value, str):  # Пример проверки типа
+     self._attr2 = value
+  else:
+    raise ValueError("attr2 должен быть строкой")
+
+def setattr(self, name, value):
+  if name in self.slots:
+     super().setattr(name, value)
+  else:
+    raise AttributeError(f"Невозможно добавить новый атрибут '{name}'")
+
+def repr(self):
+  return f"MyClass(attr1={self._attr1}, attr2={self._attr2})"
+
+# Пример использования
+obj = MyClass(10, "hello")
+print(obj)  # MyClass(attr1=10, attr2=hello)
+
+obj.attr1 = 20  # Изменение допустимо
+print(obj.attr1)  # 20
+
+try:
+    obj.attr2 = 100  # Ошибка, так как значение должно быть строкой
+except ValueError as e:
+    print(e)  # attr2 должен быть строкой
+
+try:
+    obj.new_attr = "new"  # Ошибка, так как добавление новых атрибутов запрещено
+except AttributeError as e:
+    print(e)  # Невозможно добавить новый атрибут 'new_attr'
